@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fetchApi()
+     fetchApi()
     }
     fun fetchApi(){
         val retrofit=ApiClient.buildService(ApiInterface::class.java)
@@ -23,17 +23,25 @@ class MainActivity : AppCompatActivity() {
         {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                if (response.isSuccessful){
-                   val postList=response.body()!!
+                   val postList=response.body()//null safety null assertion operator-if a variable is null it crashes altenatively you use a question mark(safecall)
+                   if(postList!=null){
+                       var postAdapter=PostRvAdapter(baseContext,postList)
+                       rvPost.adapter=postAdapter
+                   }
                     rvPost=findViewById(R.id.rvPost)
                    rvPost.layoutManager=LinearLayoutManager(baseContext)
-                   val postAdapter=PostRvAdapter(baseContext,postList)
-                   rvPost.adapter=postAdapter
-                   Toast.makeText(baseContext, postList.size.toString(),Toast.LENGTH_LONG).show()
+
+                  // Toast.makeText(baseContext, postList!!.size.toString(),Toast.LENGTH_LONG).show()
+                   //view binding
+                   //horizontal divider
+                   //two api end point
+                   //api is designed to help client communicate with the server
+
                }
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-             Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
+//             Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
             }
         })
     }
