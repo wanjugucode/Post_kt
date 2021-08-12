@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Comment
 
-class commentRvAdapter(var commentList:List<Post>, var context: Context):RecyclerView.Adapter<CommentViewHolder>() {
+class commentRvAdapter(var commentList: Comment?, var context: Context):RecyclerView.Adapter<CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
        var itemView=LayoutInflater.from(parent.context).inflate(R.layout.post_list_items,parent,false)
         return CommentViewHolder(itemView)
