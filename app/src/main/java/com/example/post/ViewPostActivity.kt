@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class ViewPostActivity : AppCompatActivity() {
     var postId=0
-lateinit var binding:ActivityViewPostBinding //finding view by id
+    lateinit var binding:ActivityViewPostBinding //finding view by id
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

@@ -11,6 +11,6 @@ interface ApiInterface {
         @GET("posts/{id}")//placeholder is id
         fun getPostById(@Path("id")postId:Int):Call<Post>
         @GET("post/comments")
-        fun getCommentsById(@Path("Comments")comment: String):Call<Post>
+        fun getComments(@Path("Comments")comment: String):Call<Comment>
 
         }

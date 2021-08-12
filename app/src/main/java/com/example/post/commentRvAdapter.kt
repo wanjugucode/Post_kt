@@ -1,5 +1,6 @@
 package com.example.post
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +10,25 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class commentRvAdapter(var commentList:List<Post>):RecyclerView.Adapter<CommentViewHolder>() {
+class commentRvAdapter(var commentList:List<Post>, var context: Context):RecyclerView.Adapter<CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
        var itemView=LayoutInflater.from(parent.context).inflate(R.layout.post_list_items,parent,false)
         return CommentViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        var currentPost=commentList.get(position)
-        holder.tvName.text=currentPost.name
-        holder.tvEmail.text=currentPost.email
-        holder.tvCommentBody.text=currentPost.commentBody
-
+        var currentComment=commentList.get(position)
+        holder.tvName.text=currentComment.name
+        holder.tvEmail.text=currentComment.email
+        holder.tvCommentBody.text=currentComment.commentBody
+       holder.cvComments.setOnClickListener {
+           var intent=Intent(context,ViewPostActivity::class.java)
+           intent.putExtra("NAME",currentComment.name)
+           intent.putExtra("EMAIL",currentComment.email)
+           intent.putExtra("BODY",currentComment.commentBody)
+           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+           context.startActivity(intent)
+       }
 
     }
 
