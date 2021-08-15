@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     rvPost=findViewById(R.id.rvPost)
                    rvPost.layoutManager=LinearLayoutManager(baseContext)
 
-                  // Toast.makeText(baseContext, postList!!.size.toString(),Toast.LENGTH_LONG).show()
+                   Toast.makeText(baseContext, postList!!.size.toString(),Toast.LENGTH_LONG).show()
                    //view binding
                    //horizontal divider
                    //two api end point
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-//             Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
+             Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
             }
         })
     }
